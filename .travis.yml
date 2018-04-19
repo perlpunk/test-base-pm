@@ -35,6 +35,7 @@ script:
 #  PERL5OPT=-MDevel::Cover=-coverage,statement,branch,condition,path,subroutine
 #  prove -lv test/
 - true && [ ! -e test/ ] ||
+  PERL5OPT=-MDevel::Cover=-coverage,statement,branch,condition,path,subroutine
   prove -lv test/
 #- true && [ ! -e test/ ] || cover
 
