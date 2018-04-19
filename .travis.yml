@@ -11,17 +11,16 @@ language: perl
 
 perl:
 - '5.24'
-- '5.22'
-- '5.20'
-- '5.18'
-- '5.16'
-- '5.14'
-- '5.12'
-- '5.10'
+#- '5.22'
+#- '5.20'
+#- '5.18'
+#- '5.16'
+#- '5.14'
+#- '5.12'
+#- '5.10'
 
 install:
-- cpanm --quiet --notest
-  Devel::Cover::Report::Coveralls
+- cpanm
   Algorithm::Diff
   ExtUtils::MakeMaker
   Filter::Util::Call
@@ -32,21 +31,23 @@ install:
   Text::Diff
 
 script:
+#- true && [ ! -e test/ ] ||
+#  PERL5OPT=-MDevel::Cover=-coverage,statement,branch,condition,path,subroutine
+#  prove -lv test/
 - true && [ ! -e test/ ] ||
-  PERL5OPT=-MDevel::Cover=-coverage,statement,branch,condition,path,subroutine
   prove -lv test/
-- true && [ ! -e test/ ] || cover
+#- true && [ ! -e test/ ] || cover
 
-after_success:
-- cover -report coveralls
+#after_success:
+#- cover -report coveralls
 
-notifications:
-  irc:
-    channels:
-    - irc.freenode.net#pkg
-    on_success: change
-    on_failure: always
-    skip_join: true
+#notifications:
+#  irc:
+#    channels:
+#    - irc.freenode.net#pkg
+#    on_success: change
+#    on_failure: always
+#    skip_join: true
 
 # Hack to not run on tag pushes:
 branches:
