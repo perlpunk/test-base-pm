@@ -21,6 +21,7 @@ perl:
 
 install:
 - cpanm
+  Devel::Cover
   Algorithm::Diff
   ExtUtils::MakeMaker
   Filter::Util::Call
